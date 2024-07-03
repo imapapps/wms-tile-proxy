@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% load socialaccount %}
+    {% load i18n %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" href="{% static '/img/wms_proxy.png' %}" type="image/png">
+    <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+    <title>{% block title %}WMS Proxy Example{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
+            integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        footer {
+            height: 40px;
+            background-color: #f1f1f1;
+        }
+
+        .navbar {
+            --bs-navbar-padding-x: 18px;
+        }
+    </style>
+
+    {% block script %}{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">WMS Proxy Example</a>
+    <div class="collapse navbar-collapse">
+
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                {% if user.is_authenticated %}
+                    <a class="nav-link dropdown-toggle" href="#" role="button"
+                       data-bs-toggle="dropdown">{{ user.username }} </a>
+                    <ul class="dropdown-menu dropdown-menu-end" id="details" style="">
+                        <li><a class="dropdown-item" href="/accounts/logout/">Log Out</a></li>
+                    </ul>
+                {% else %}
+                    <form method="post" action="{% provider_login_url 'google' %}">
+                        {% csrf_token %}
+                        <div class="customGPlusSignIn" onclick="document.forms[0].submit();">
+                            <span class="nav-link" style="cursor: pointer;">Login with Google</span>
+                        </div>
+                    </form>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+</nav>
+{% block content %}{% endblock %}
+<footer class="text-center">
+    Footer content
+</footer>
+</body>
+</html>

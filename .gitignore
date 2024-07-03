@@ -1,0 +1,7 @@
+data.json
+/venv/
+/.idea/
+*.pyc
+**/__pycache__/
+db.sqlite3
+staticfiles

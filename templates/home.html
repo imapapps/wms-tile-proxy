@@ -1,0 +1,52 @@
+{% extends "app_base.html" %}
+{% load static %}
+
+{% block title %}WMS Proxy Example{% endblock %}
+{% block script %}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Local tile proxy example</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css"
+          integrity="sha512-Zcn6bjR/8RZbLEpLIeOwNtzREBAJnUKESxces60Mpoj+2okopSAcSUIUOseddDm0cxnGQzxIR7vJgsLZbdLE3w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"
+            integrity="sha512-BwHfrr4c9kmRkLw6iXFdzcdWV/PGkVgiIyIWLLlTSXzWQzxuSg4DiQUCpauz/EWjgk5TYQqX/kvn9pG1NpYfqg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+
+    <style>
+
+        #map_div {
+            height: calc(100vh - 56px - 40px);
+        }
+    </style>
+
+    <script type="text/javascript">
+        let map;
+        $(function () {
+            map = new L.map('map_div');
+            map.setView([34.7304, -86.5861], 13);
+
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© OpenStreetMap'
+            }).addTo(map);
+
+            const chirps = L.tileLayer.wms('/thredds/wms/Agg/ucsb-chirps_global_0.05deg_daily.nc4', {
+                layers: 'precipitation_amount',
+                transparent: 'true',
+                format: 'image/png',
+                style: 'boxfill/apcp_surface',
+                maxZoom: 21,
+                zIndex: 400,
+                opacity: 0.5
+            });
+            chirps.addTo(map);
+        });
+    </script>
+
+{% endblock %}
+{% block content %}
+    <div id="map_div">
+    </div>
+{% endblock %}
