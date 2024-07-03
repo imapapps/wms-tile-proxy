@@ -1,0 +1,11 @@
+name: web_tile_proxy
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.11
+  - django
+  - requests
+  - django-allauth
+  - conda-forge::pillow
+

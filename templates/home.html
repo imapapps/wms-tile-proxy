@@ -28,20 +28,18 @@
             map.setView([34.7304, -86.5861], 13);
 
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
+                maxZoom: 8,
                 attribution: '© OpenStreetMap'
             }).addTo(map);
 
-            const chirps = L.tileLayer.wms('/thredds/wms/Agg/ucsb-chirps_global_0.05deg_daily.nc4', {
-                layers: 'precipitation_amount',
+            const sample_layer = L.tileLayer.wms('{{ sample_layer_url }}', {
+                layers: '{{ sample_layer_layers }}',
                 transparent: 'true',
                 format: 'image/png',
-                style: 'boxfill/apcp_surface',
-                maxZoom: 21,
+                style: '{{ sample_layer_style }}',
                 zIndex: 400,
-                opacity: 0.5
             });
-            chirps.addTo(map);
+            sample_layer.addTo(map);
         });
     </script>
 

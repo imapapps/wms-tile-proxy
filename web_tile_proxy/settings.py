@@ -47,7 +47,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend'
 ]
-SITE_ID = 3
+SITE_ID = data["SITE_ID"]
 LOGIN_REDIRECT_URL = '/'
 
 # Additional configuration settings
