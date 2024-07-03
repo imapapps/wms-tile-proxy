@@ -5,7 +5,10 @@
 
 ## Overview
 
-Provide a brief overview of your application here. This template is designed for code repositories. If your repository contains other types of content, such as a collection of notebooks with chapters, consider listing and linking to each chapter.
+This application is a demonstration of how to display private thredds data that is served from a server with only a 
+local network ip address and is not accessible to the public.  The application must be run on the same network and 
+usually has a public ip address.  This application does not go into all the different ways you can manage access
+but rather shows the process using authentication and groups.
 
 ## Setup and Installation
 
