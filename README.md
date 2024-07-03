@@ -68,8 +68,9 @@ information for your application. There are a few pages with choices, proceed wh
 7. In the dropdown select "Web Application" and give a name. 
 8. In the App Domain fields use the dev domains for example:
    1. http://127.0.0.1:8000/
-   2. http://127.0.0.1:8000/terms-privacy
-   3. http://127.0.0.1:8000/terms-privacy
+   2. http://localhost:8000/
+   3. http://localhost:8000/terms-privacy
+   4. http://127.0.0.1:8000/terms-privacy
 9. Add Authorized JavaScript origins (you may enable multiple)
    1. Examples:
       1. http://localhost:8000
